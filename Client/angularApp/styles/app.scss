@@ -1,0 +1,13 @@
+// Your variable overrides
+@import "_variables.scss";
+
+$body-bg: $colorTurkise;
+$body-color: $colorVioletDark;
+
+// Bootstrap and its default variables
+@import "node_modules/bootstrap/scss/bootstrap";
+.navbar-nav {
+    .bg-dark{
+        background-color: $colorVioletBright;    
+    }
+}
