@@ -26,7 +26,7 @@ services:
       - webapi-network
 
   mongodb:
-    container_name: mongodb
+    container_name: mongodbKinderkultur
     image: mongo
     networks:
       - webapi-network

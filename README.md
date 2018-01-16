@@ -83,6 +83,7 @@ https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner
 
 #### MongoDB C# Driver
 https://github.com/fpetru/WebApiMongoDB
+http://www.qappdesign.com/using-mongodb-with-net-core-webapi/
 
 ## <a name="3"></a>Running
 
@@ -233,8 +234,18 @@ MIT
     
     /Users/dev/Documents/imports/links.json
 mongoimport --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
+mongoimport -h 127.0.0.1:1111 --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
+-h <hostname><:port>
+
+
 #### credits
 
-... user: "admin",
-... pwd: "abc123!",
-... roles: [ { role: "root", db: "admin" } ]
+use admin
+db.createUser(
+  {
+    user: "admin",
+    pwd: "abc123!",
+    roles: [ { role: "root", db: "admin" } ]
+  }
+);
+exit;
