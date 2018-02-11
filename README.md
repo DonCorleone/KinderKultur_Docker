@@ -244,8 +244,10 @@ use admin
 db.createUser(
   {
     user: "admin",
-    pwd: "abc123!",
+    pwd: "xxx",
     roles: [ { role: "root", db: "admin" } ]
   }
 );
 exit;
+
+mongo admin -u admin -p
