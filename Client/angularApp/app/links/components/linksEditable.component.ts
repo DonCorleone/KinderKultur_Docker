@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } 	from '@angular/core';
+import { Router }					from '@angular/router';
 
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
 
 @Component({
-	selector: 'app-links-list',
-	templateUrl: './links.component.html',
-	styleUrls: ['./links.component.scss']
+	selector: 'app-links-editable-list',
+	templateUrl: './linksEditable.component.html',
+	styleUrls: ['./linksEditable.component.scss']
 })
-export class LinksComponent implements OnInit {
+export class LinksEditableComponent implements OnInit {
 
-	public message: string;
-	public links: Link[] = [];
-	public link: Link = new Link();
+	message: string;
+	links: Link[] = [];
+	link: Link = new Link();
+	selectedLink: Link;
 
-	constructor(private dataService: LinkService) {
-		this.message = 'Links from the ASP.NET Core API';
+	constructor(
+		private dataService: LinkService,
+		private router: Router) {
+		this.message = 'Editable Links from the ASP.NET Core API';
 	}
 
 	ngOnInit() {
@@ -43,6 +47,10 @@ export class LinksComponent implements OnInit {
 			});
 	}
 
+	public onSelect(link: Link): void {
+		this.selectedLink = link;
+	}
+
 	private getAllLinks() {
 		this.dataService
 			.getAll()
@@ -51,5 +59,9 @@ export class LinksComponent implements OnInit {
 				error => console.log(error),
 				() => console.log('Get all complete')
 			);
+	}
+
+	gotoDetail(): void {
+		this.router.navigate(['/detail', this.selectedLink.id]);
 	}
 }

@@ -10,21 +10,21 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-    imports: [
-        BrowserModule,    // Include it under 'imports' in your application module
-        // after BrowserModule.
-        HttpClientModule,
-        AppRoutes,
-        SharedModule,
-        CoreModule.forRoot(),
-        HomeModule
-    ],
+	imports: [
+		BrowserModule,    // Include it under 'imports' in your application module
+		// after BrowserModule.
+		HttpClientModule,
+		AppRoutes,
+		SharedModule,
+		CoreModule.forRoot(),
+		HomeModule
+	],
 
-    declarations: [
-        AppComponent
-    ],
+	declarations: [
+		AppComponent
+	],
 
-    bootstrap: [AppComponent],
+	bootstrap: [AppComponent],
 })
 
 export class AppModule { }

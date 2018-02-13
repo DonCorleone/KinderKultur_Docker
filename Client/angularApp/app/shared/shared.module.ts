@@ -6,20 +6,20 @@ import { CustomFooterComponent } from './components/customfooter/customfooter.co
 import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule
-    ],
+	imports: [
+		CommonModule,
+		RouterModule
+	],
 
-    declarations: [
-        NavigationComponent,
-        CustomFooterComponent
-    ],
+	declarations: [
+		NavigationComponent,
+		CustomFooterComponent
+	],
 
-    exports: [
-        NavigationComponent,
-        CustomFooterComponent
-    ]
+	exports: [
+		NavigationComponent,
+		CustomFooterComponent
+	]
 })
 
 export class SharedModule { }

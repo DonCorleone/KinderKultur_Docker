@@ -11,7 +11,7 @@ declare let System: any;
 // Enables Hot Module Replacement.
 declare let module: any;
 if (module.hot) {
-    module.hot.accept();
+	module.hot.accept();
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);

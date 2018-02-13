@@ -4,18 +4,19 @@ import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
 
 @Component({
-	selector: 'app-links-list',
-	templateUrl: './links.component.html',
-	styleUrls: ['./links.component.scss']
+	selector: 'app-links-editable-detail-list',
+	templateUrl: './linksEditable-detail.component.html',
+	styleUrls: ['./linksEditable-detail.component.scss']
 })
-export class LinksComponent implements OnInit {
+export class LinksEditableDetailComponent implements OnInit {
 
-	public message: string;
-	public links: Link[] = [];
-	public link: Link = new Link();
+	message: string;
+	links: Link[] = [];
+	link: Link = new Link();
+	selectedLink: Link;
 
 	constructor(private dataService: LinkService) {
-		this.message = 'Links from the ASP.NET Core API';
+		this.message = 'Editable Link from the ASP.NET Core API';
 	}
 
 	ngOnInit() {
@@ -41,6 +42,10 @@ export class LinksComponent implements OnInit {
 			}, (error) => {
 				console.log(error);
 			});
+	}
+
+	public onSelect(link: Link): void {
+		this.selectedLink = link;
 	}
 
 	private getAllLinks() {

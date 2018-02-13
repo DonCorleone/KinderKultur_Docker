@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<div class="row" *ngIf="links.length > 0">
+		<div class="col">
+			<div class="card">
+				<table class="table table-responsive table-hover links">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th class="text-right"></th>
+							<th class="text-right"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='clickable-row' *ngFor="let link of links" (click)="onSelect(link)" [class.selected]="link === selectedLink">
+							<td>{{link.name}}</td>
+							<td>{{link.desc}}</td>
+							<td class="text-right">
+								<button type="button" class="btn btn-sm btn-danger" (click)="deleteLink(link)">Delete</button>
+							</td>
+							<td class="text-right">
+								<button type="button" class="btn btn-sm btn-danger" (click)="deleteLink(link)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- div class="table-responsive" -->
+
+		<!-- /div -->
+	</div>
+
+	<div class="row" *ngIf="links.length <= 0">
+		<span>No items found</span>
+	</div>
