@@ -1,38 +1,42 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col">
-			<form (ngSubmit)="addLink()" #linkForm="ngForm">
-				<div class="card">
+			<div *ngIf="link">
 
-					<div class="card-body">
-						<h4 class="card-tilte">{{message}}</h4>
+				<form (ngSubmit)="save()" #linkForm="ngForm">
+					<div class="card">
 
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputLinkName">Name</label>
-							<input type="text" class="form-control" id="exampleInputLinkName" placeholder="Name of the Link ..." name="linkName" [(ngModel)]="link.name"
-							   required>
+						<div class="card-body">
+
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputLinkName">Name</label>
+								<input type="text" class="form-control" id="exampleInputLinkName" placeholder="Name of the Link ..." name="linkName" [(ngModel)]="link.name"
+								   required>
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputLinkDesc">Desc</label>
+								<textarea class="form-control" id="exampleInputLinkDesc" rows="3" placeholder="Desc of the Link ..." name="linkDesc" [(ngModel)]="link.desc"
+								   required></textarea>
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputLinkUrl">URL</label>
+								<input type="url" class="form-control" id="exampleInputLinkUrl" placeholder="URL of the Link ..." name="linkUrl" [(ngModel)]="link.url"
+								   required>
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputLinkUrlDesc">URLDesc</label>
+								<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the Url ..." name="linkUrlDesc"
+								   [(ngModel)]="link.urldesc" required>
+							</div>
 						</div>
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputLinkDesc">Desc</label>
-							<textarea class="form-control" id="exampleInputLinkDesc" rows="3" placeholder="Desc of the Link ..." name="linkDesc" [(ngModel)]="link.desc"
-							   required></textarea>
-						</div>
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputLinkUrl">URL</label>
-							<input type="url" class="form-control" id="exampleInputLinkUrl" placeholder="URL of the Link ..." name="linkUrl" [(ngModel)]="link.url"
-							   required>
-						</div>
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputLinkUrlDesc">URLDesc</label>
-							<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the Url ..." name="linkUrlDesc"
-							   [(ngModel)]="link.urldesc" required>
+
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary" [disabled]="!linkForm.valid">Create new Link</button>
 						</div>
 					</div>
-
-					<div class="card-footer">
-						<button type="submit" class="btn btn-primary" [disabled]="!linkForm.valid">Create new Link</button>
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
+			<button (click)="goBack()">Back</button>
+			<button (click)="save()">Save</button>
 		</div>
 	</div>

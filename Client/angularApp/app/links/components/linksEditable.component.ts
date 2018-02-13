@@ -49,6 +49,7 @@ export class LinksEditableComponent implements OnInit {
 
 	public onSelect(link: Link): void {
 		this.selectedLink = link;
+		this.gotoDetail();
 	}
 
 	private getAllLinks() {
@@ -62,6 +63,6 @@ export class LinksEditableComponent implements OnInit {
 	}
 
 	gotoDetail(): void {
-		this.router.navigate(['/detail', this.selectedLink.id]);
+		this.router.navigate(['/detail/']);
 	}
 }

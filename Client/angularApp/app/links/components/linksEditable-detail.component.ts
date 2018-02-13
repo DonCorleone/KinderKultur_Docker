@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location }                 from '@angular/common';
 
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
@@ -10,51 +12,26 @@ import { Link } from './../../models/link';
 })
 export class LinksEditableDetailComponent implements OnInit {
 
-	message: string;
-	links: Link[] = [];
-	link: Link = new Link();
-	selectedLink: Link;
+	link: Link;
 
-	constructor(private dataService: LinkService) {
-		this.message = 'Editable Link from the ASP.NET Core API';
+	constructor(
+		private linkService: LinkService,
+		private route: ActivatedRoute,
+		private location: Location
+	) { }
+
+	ngOnInit(): void {
+		this.route.paramMap
+			.switchMap((params: ParamMap) => this.linkService.getSingle(+params.get('id')))
+			.subscribe(link => this.link = link);
 	}
 
-	ngOnInit() {
-		this.getAllLinks();
+	save(): void {
+		this.linkService.update(this.link.id, this.link)
+			.then(() => this.goBack());
 	}
 
-	public addLink() {
-		this.dataService
-			.add(this.link)
-			.subscribe(() => {
-				this.getAllLinks();
-				this.link = new Link();
-			}, (error) => {
-				console.log(error);
-			});
-	}
-
-	public deleteLink(thing: Link) {
-		this.dataService
-			.delete(thing.id)
-			.subscribe(() => {
-				this.getAllLinks();
-			}, (error) => {
-				console.log(error);
-			});
-	}
-
-	public onSelect(link: Link): void {
-		this.selectedLink = link;
-	}
-
-	private getAllLinks() {
-		this.dataService
-			.getAll()
-			.subscribe(
-				data => this.links = data,
-				error => console.log(error),
-				() => console.log('Get all complete')
-			);
+	goBack(): void {
+		this.location.back();
 	}
 }

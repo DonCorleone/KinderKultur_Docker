@@ -7,7 +7,7 @@ import { LinksEditableDetailComponent } from './components/linksEditable-detail.
 const routes: Routes = [
 	{ path: '', component: LinksComponent },
 	{ path: 'editable', component: LinksEditableComponent },
-	{ path: 'editable/:id', component: LinksEditableDetailComponent }
+	{ path: 'editable/detail', component: LinksEditableDetailComponent }
 ];
 
 export const LinksRoutes = RouterModule.forChild(routes);
