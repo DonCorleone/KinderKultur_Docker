@@ -36,12 +36,9 @@ export class LinkService {
 		return this.http.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
 	}
 
-	update(id: string, itemToUpdate: Link): Promise<Link> {
+	update(id: string, itemToUpdate: Link): Observable<Link> {
 		return this.http
-			.put<Link>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers })
-			.toPromise()
-			.then(() => itemToUpdate)
-			.catch(this.handleError);
+			.put<Link>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers });
 	}
 
 	private handleError(error: any): Promise<any> {

@@ -17,16 +17,14 @@ export class LinksEditableComponent implements OnInit {
 	selectedLink: Link;
 
 	constructor(
-		private dataService: LinkService,
-		private router: Router) {
-		this.message = 'Editable Links from the ASP.NET Core API';
-	}
+		private router: Router,
+		private dataService: LinkService) {}
 
 	ngOnInit() {
 		this.getAllLinks();
 	}
 
-	public addLink() {
+	addLink() {
 		this.dataService
 			.add(this.link)
 			.subscribe(() => {
@@ -37,7 +35,7 @@ export class LinksEditableComponent implements OnInit {
 			});
 	}
 
-	public deleteLink(link: Link) {
+	deleteLink(link: Link) {
 		this.dataService
 			.delete(link.id)
 			.subscribe(() => {
@@ -47,12 +45,12 @@ export class LinksEditableComponent implements OnInit {
 			});
 	}
 
-	public onSelect(link: Link): void {
+	onSelect(link: Link): void {
 		this.selectedLink = link;
 		this.gotoDetail();
 	}
 
-	private getAllLinks() {
+	getAllLinks() {
 		this.dataService
 			.getAll()
 			.subscribe(
