@@ -26,8 +26,8 @@ export class LinkService {
 		return this.http.get<Link[]>(this.actionUrl, { headers: this.headers });
 	}
 
-	getSingle(id: number): Observable<Link> {
-		return this.http.get<Link>(this.actionUrl + id, { headers: this.headers });
+	getSingle(id: string): Observable<Link> {
+		return this.http.get<Link>(this.actionUrl + id.toString(), { headers: this.headers });
 	}
 
 	add(linkToAdd: Link): Observable<Link> {
@@ -36,7 +36,7 @@ export class LinkService {
 		return this.http.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
 	}
 
-	update(id: number, itemToUpdate: Link): Promise<Link> {
+	update(id: string, itemToUpdate: Link): Promise<Link> {
 		return this.http
 			.put<Link>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers })
 			.toPromise()
@@ -49,7 +49,7 @@ export class LinkService {
 		return Promise.reject(error.message || error);
 	}
 
-	delete(id: number): Observable<any> {
-		return this.http.delete<any>(this.actionUrl + id, { headers: this.headers });
+	delete(id: string): Observable<any> {
+		return this.http.delete<any>(this.actionUrl + id.toString(), { headers: this.headers });
 	}
 }

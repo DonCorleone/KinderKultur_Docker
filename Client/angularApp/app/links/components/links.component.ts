@@ -33,9 +33,9 @@ export class LinksComponent implements OnInit {
 			});
 	}
 
-	public deleteLink(thing: Link) {
+	public deleteLink(link: Link) {
 		this.dataService
-			.delete(thing.id)
+			.delete(link.id)
 			.subscribe(() => {
 				this.getAllLinks();
 			}, (error) => {

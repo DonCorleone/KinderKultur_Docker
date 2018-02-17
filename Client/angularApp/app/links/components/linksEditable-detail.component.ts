@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
 
+import 'rxjs/add/operator/switchMap';
+
 @Component({
-	selector: 'app-links-editable-detail-list',
+	selector: 'app-links-editable-detail',
 	templateUrl: './linksEditable-detail.component.html',
 	styleUrls: ['./linksEditable-detail.component.scss']
 })
 export class LinksEditableDetailComponent implements OnInit {
 
-	link: Link;
+	@Input() link: Link;
 
 	constructor(
 		private linkService: LinkService,
@@ -22,7 +24,7 @@ export class LinksEditableDetailComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.paramMap
-			.switchMap((params: ParamMap) => this.linkService.getSingle(+params.get('id')))
+			.switchMap((params: ParamMap) => this.linkService.getSingle(params.get('id')))
 			.subscribe(link => this.link = link);
 	}
 

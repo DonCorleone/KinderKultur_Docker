@@ -37,9 +37,9 @@ export class LinksEditableComponent implements OnInit {
 			});
 	}
 
-	public deleteLink(thing: Link) {
+	public deleteLink(link: Link) {
 		this.dataService
-			.delete(thing.id)
+			.delete(link.id)
 			.subscribe(() => {
 				this.getAllLinks();
 			}, (error) => {
@@ -63,6 +63,6 @@ export class LinksEditableComponent implements OnInit {
 	}
 
 	gotoDetail(): void {
-		this.router.navigate(['/detail/']);
+		this.router.navigate(['links/detail', this.selectedLink.id]);
 	}
 }
