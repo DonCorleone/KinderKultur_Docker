@@ -7,6 +7,7 @@ import { LinksRoutes } from './links.routes';
 import { LinksComponent } from './components/links.component';
 import { LinksEditableComponent } from './components/linksEditable.component';
 import { LinksEditableDetailComponent } from './components/linksEditable-detail.component';
+import { LinksEditableAddComponent } from './components/linksEditable-add.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LinksEditableDetailComponent } from './components/linksEditable-detail.
 	declarations: [
 		LinksComponent,
 		LinksEditableComponent,
-		LinksEditableDetailComponent
+		LinksEditableDetailComponent,
+		LinksEditableAddComponent
 	]
 })
 

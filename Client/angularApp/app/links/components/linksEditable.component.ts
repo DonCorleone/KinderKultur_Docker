@@ -17,25 +17,18 @@ export class LinksEditableComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private dataService: LinkService) { }
+		private linkService: LinkService) { }
 
 	ngOnInit() {
 		this.getAllLinks();
 	}
 
-	// addLink() {
-	// 	this.dataService
-	// 		.add(this.link)
-	// 		.subscribe(() => {
-	// 			this.getAllLinks();
-	// 			this.link = new Link();
-	// 		}, (error) => {
-	// 			console.log(error);
-	// 		});
-	// }
+	addLink(): void {
+		this.router.navigate(['links/add']);
+	}
 
 	deleteLink(link: Link): void {
-		this.dataService
+		this.linkService
 			.delete(link.id)
 			.then(() => {
 				this.links = this.links.filter(h => h !== link);
@@ -49,7 +42,7 @@ export class LinksEditableComponent implements OnInit {
 	}
 
 	getAllLinks() {
-		this.dataService
+		this.linkService
 			.getAll()
 			.subscribe(
 				data => this.links = data,

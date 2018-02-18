@@ -31,6 +31,27 @@ export class LinkService {
 		return this.httpClient.get<Link>(this.actionUrl + id.toString(), { headers: this.headers });
 	}
 
+	create(linkToAdd: Link): Promise<Link> {
+		const newLink = JSON.stringify({
+			name: linkToAdd.name
+		});
+		return this.httpClient
+			.post(this.actionUrl, linkToAdd,
+			// 	JSON.stringify({
+			// 	name: linkToAdd.name
+			// }) + JSON.stringify({
+			// 	desc: linkToAdd.desc
+			// }) + JSON.stringify({
+			// 	url: linkToAdd.url
+			// }) + JSON.stringify({
+			// 	urldesc: linkToAdd.urldesc
+			// }),
+			{ headers: this.headers })
+			.toPromise()
+			.then(res => res as Link)
+			.catch(this.handleError);
+	}
+
 	add(linkToAdd: Link): Observable<Link> {
 		const toAdd = JSON.stringify({ name: linkToAdd.name });
 
@@ -49,10 +70,6 @@ export class LinkService {
 		console.error('An error occurred', error); // for demo purposes only
 		return Promise.reject(error.message || error);
 	}
-
-	// delete(id: string): Observable<any> {
-	// 	return this.http.delete<any>(this.actionUrl + id.toString(), { headers: this.headers });
-	// }
 
 	delete(id: string): Promise<void> {
 		return this.httpClient.delete(this.actionUrl + id, { headers: this.headers })
