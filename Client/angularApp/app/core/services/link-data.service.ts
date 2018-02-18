@@ -14,7 +14,7 @@ export class LinkService {
 	private actionUrl: string;
 	private headers: HttpHeaders;
 
-	constructor(private http: HttpClient, private configuration: Configuration) {
+	constructor(private httpClient: HttpClient, private configuration: Configuration) {
 
 		this.actionUrl = configuration.Server + 'api/links/';
 
@@ -24,21 +24,21 @@ export class LinkService {
 	}
 
 	getAll(): Observable<Link[]> {
-		return this.http.get<Link[]>(this.actionUrl, { headers: this.headers });
+		return this.httpClient.get<Link[]>(this.actionUrl, { headers: this.headers });
 	}
 
 	getSingle(id: string): Observable<Link> {
-		return this.http.get<Link>(this.actionUrl + id.toString(), { headers: this.headers });
+		return this.httpClient.get<Link>(this.actionUrl + id.toString(), { headers: this.headers });
 	}
 
 	add(linkToAdd: Link): Observable<Link> {
 		const toAdd = JSON.stringify({ name: linkToAdd.name });
 
-		return this.http.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
+		return this.httpClient.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
 	}
 
 	update(id: string, itemToUpdate: Link): Promise<Link> {
-		return this.http
+		return this.httpClient
 			.put<Link>(this.actionUrl + id, itemToUpdate, { headers: this.headers })
 			.toPromise()
 			.then(() => itemToUpdate)
@@ -55,7 +55,7 @@ export class LinkService {
 	// }
 
 	delete(id: string): Promise<void> {
-		return this.http.delete(this.actionUrl + id, { headers: this.headers })
+		return this.httpClient.delete(this.actionUrl + id, { headers: this.headers })
 			.toPromise()
 			.then(() => null)
 			.catch(this.handleError);

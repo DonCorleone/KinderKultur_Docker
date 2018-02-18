@@ -12,7 +12,6 @@ export class LinksComponent implements OnInit {
 
 	public message: string;
 	public links: Link[] = [];
-	public link: Link = new Link();
 
 	constructor(private dataService: LinkService) {
 		this.message = 'Links from the ASP.NET Core API';
