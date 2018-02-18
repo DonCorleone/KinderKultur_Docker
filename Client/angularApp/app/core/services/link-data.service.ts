@@ -12,10 +12,13 @@ export class LinkService {
 
 	private actionUrl: string;
 	private headers: HttpHeaders;
+	private _collection: Array<Link>;
+	private _collectionObserver: any;
 
 	constructor(private http: HttpClient, private configuration: Configuration) {
 
 		this.actionUrl = configuration.Server + 'api/links/';
+
 
 		this.headers = new HttpHeaders();
 		this.headers = this.headers.set('Content-Type', 'application/json');
@@ -36,9 +39,14 @@ export class LinkService {
 		return this.http.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
 	}
 
-	update(id: string, itemToUpdate: Link): Observable<Link> {
+
+	update(id: string, itemToUpdate: Link) {
 		return this.http
-			.put<Link>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers });
+			.put<Link>(this.actionUrl + id, itemToUpdate, { headers: this.headers })
+			.subscribe((data: Link) => {
+				this._collection.push(data);
+				this._collectionObserver.next(this._collection);
+			});
 	}
 
 	private handleError(error: any): Promise<any> {
