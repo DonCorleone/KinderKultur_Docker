@@ -1,5 +1,5 @@
-import { Component, OnInit } 	from '@angular/core';
-import { Router }					from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
@@ -13,35 +13,33 @@ export class LinksEditableComponent implements OnInit {
 
 	message: string;
 	links: Link[] = [];
-	link: Link = new Link();
 	selectedLink: Link;
 
 	constructor(
 		private router: Router,
-		private dataService: LinkService) {}
+		private dataService: LinkService) { }
 
 	ngOnInit() {
 		this.getAllLinks();
 	}
 
-	addLink() {
-		this.dataService
-			.add(this.link)
-			.subscribe(() => {
-				this.getAllLinks();
-				this.link = new Link();
-			}, (error) => {
-				console.log(error);
-			});
-	}
+	// addLink() {
+	// 	this.dataService
+	// 		.add(this.link)
+	// 		.subscribe(() => {
+	// 			this.getAllLinks();
+	// 			this.link = new Link();
+	// 		}, (error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 
-	deleteLink(link: Link) {
+	deleteLink(link: Link): void {
 		this.dataService
 			.delete(link.id)
-			.subscribe(() => {
-				this.getAllLinks();
-			}, (error) => {
-				console.log(error);
+			.then(() => {
+				this.links = this.links.filter(h => h !== link);
+				if (this.selectedLink === link) { this.selectedLink = null; }
 			});
 	}
 

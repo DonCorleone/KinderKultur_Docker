@@ -29,8 +29,8 @@ export class LinksEditableDetailComponent implements OnInit {
 	}
 
 	save(): void {
-		this.linkService.update(this.link.id, this.link);
-		this.goBack();
+		this.linkService.update(this.link.id, this.link)
+		.then(() => this.goBack());
 	}
 
 	goBack(): void {

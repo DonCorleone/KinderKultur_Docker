@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<div class="row" *ngIf="links.length > 0">
+	<div class="row" *ngIf="links?.length > 0">
 		<div class="col">
 			<div class="card">
 				<table class="table table-responsive table-hover links">
@@ -12,9 +12,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='clickable-row' *ngFor="let link of links" (click)="onSelect(link)" [class.selected]="link === selectedLink">
-							<td>{{link.name}}</td>
-							<td>{{link.desc}}</td>
+						<tr class='clickable-row' *ngFor="let link of links">
+							<td (click)="onSelect(link)" [class.selected]="link === selectedLink">{{link.name}}</td>
+							<td (click)="onSelect(link)" [class.selected]="link === selectedLink">{{link.desc}}</td>
 							<td class="text-right">
 								<button type="button" class="btn btn-sm btn-danger" (click)="deleteLink(link)">Delete</button>
 							</td>

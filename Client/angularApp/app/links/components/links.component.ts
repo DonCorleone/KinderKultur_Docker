@@ -22,27 +22,6 @@ export class LinksComponent implements OnInit {
 		this.getAllLinks();
 	}
 
-	public addLink() {
-		this.dataService
-			.add(this.link)
-			.subscribe(() => {
-				this.getAllLinks();
-				this.link = new Link();
-			}, (error) => {
-				console.log(error);
-			});
-	}
-
-	public deleteLink(link: Link) {
-		this.dataService
-			.delete(link.id)
-			.subscribe(() => {
-				this.getAllLinks();
-			}, (error) => {
-				console.log(error);
-			});
-	}
-
 	private getAllLinks() {
 		this.dataService
 			.getAll()

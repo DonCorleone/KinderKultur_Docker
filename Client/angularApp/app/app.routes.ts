@@ -6,9 +6,6 @@ export const routes: Routes = [
 	{ path: '', component: HomeComponent, pathMatch: 'full' },
 	{
 		path: 'links', loadChildren: './links/links.module#LinksModule',
-	},
-	{
-		path: 'notes', loadChildren: './notes/notes.module#NotesModule',
 	}
 ];
 

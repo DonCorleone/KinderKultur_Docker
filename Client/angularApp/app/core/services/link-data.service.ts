@@ -1,4 +1,5 @@
 ﻿import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,13 +13,10 @@ export class LinkService {
 
 	private actionUrl: string;
 	private headers: HttpHeaders;
-	private _collection: Array<Link>;
-	private _collectionObserver: any;
 
 	constructor(private http: HttpClient, private configuration: Configuration) {
 
 		this.actionUrl = configuration.Server + 'api/links/';
-
 
 		this.headers = new HttpHeaders();
 		this.headers = this.headers.set('Content-Type', 'application/json');
@@ -39,22 +37,27 @@ export class LinkService {
 		return this.http.post<Link>(this.actionUrl, toAdd, { headers: this.headers });
 	}
 
-
-	update(id: string, itemToUpdate: Link) {
+	update(id: string, itemToUpdate: Link): Promise<Link> {
 		return this.http
 			.put<Link>(this.actionUrl + id, itemToUpdate, { headers: this.headers })
-			.subscribe((data: Link) => {
-				this._collection.push(data);
-				this._collectionObserver.next(this._collection);
-			});
+			.toPromise()
+			.then(() => itemToUpdate)
+			.catch(this.handleError);
 	}
 
-	private handleError(error: any): Promise<any> {
+	handleError(error: any): Promise<any> {
 		console.error('An error occurred', error); // for demo purposes only
 		return Promise.reject(error.message || error);
 	}
 
-	delete(id: string): Observable<any> {
-		return this.http.delete<any>(this.actionUrl + id.toString(), { headers: this.headers });
+	// delete(id: string): Observable<any> {
+	// 	return this.http.delete<any>(this.actionUrl + id.toString(), { headers: this.headers });
+	// }
+
+	delete(id: string): Promise<void> {
+		return this.http.delete(this.actionUrl + id, { headers: this.headers })
+			.toPromise()
+			.then(() => null)
+			.catch(this.handleError);
 	}
 }
