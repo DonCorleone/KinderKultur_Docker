@@ -37,6 +37,7 @@ export class LinksEditableComponent implements OnInit {
 	}
 
 	onSelect(link: Link): void {
+
 		this.selectedLink = link;
 		this.gotoDetail();
 	}
