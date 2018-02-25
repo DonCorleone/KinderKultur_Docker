@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { Configuration } from '../app.constants';
-import { ThingService } from './services/thing-data.service';
 import { LinkService } from './services/link-data.service';
 
 @NgModule({
@@ -16,7 +15,6 @@ export class CoreModule {
 		return {
 			ngModule: CoreModule,
 			providers: [
-				ThingService,
 				LinkService,
 				Configuration
 			]
