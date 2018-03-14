@@ -67,13 +67,6 @@ Requirements:
 
 You can use this template also with [yarn](https://yarnpkg.com/en/docs/install).
 
-#### Visual Studio
-
-The installed _nodejs_ on your system needs to be used inside Visual Studio and not the _nodejs_ from Visual Studio. You need to set the path of your node before the VS node.
-
-In Visual Studio: _Tools -> Options -> Projects and Solutions -> Web Package Management -> External Web Tools_
-
-Move the _$(Path)_ option above the Visual Studio one.
 
 #### NPM Task Runner
 
@@ -82,12 +75,17 @@ The _NPM Task Runner_ can be used to build the client application from inside Vi
 https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner
 
 #### MongoDB C# Driver
+
 https://github.com/fpetru/WebApiMongoDB
 http://www.qappdesign.com/using-mongodb-with-net-core-webapi/
 
 ## <a name="3"></a>Running
 
 The ASP.NET Core application contains both the server side API services and also hosts the Angular client application. The source code for the Angular application is implemented in the _angularApp_ folder. Webpack is then used to deploy the application, using the development build or a production build, which deploys the application to the wwwroot folder. This makes it easy to deploy the application using the standard tools from Visual Studio with the standard configurations.
+
+### .NET Core Web API Versioning
+
+https://www.hanselman.com/blog/ASPNETCoreRESTfulWebAPIVersioningMadeEasy.aspx
 
 ### <a name="3.1"></a>Commands
 
