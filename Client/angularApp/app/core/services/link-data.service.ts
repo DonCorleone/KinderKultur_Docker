@@ -16,7 +16,7 @@ export class LinkService {
 
 	constructor(private httpClient: HttpClient, private configuration: Configuration) {
 
-		this.actionUrl = configuration.Server + 'api/links/';
+		this.actionUrl = configuration.Server + 'api/v1/links/';
 
 		this.headers = new HttpHeaders();
 		this.headers = this.headers.set('Content-Type', 'application/json');

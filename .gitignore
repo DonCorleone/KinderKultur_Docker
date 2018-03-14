@@ -323,6 +323,7 @@ src/KinderKulturServer/wwwroot/dist
 src/AngularWebpackVisualStudio/wwwroot/dist/
 src/AngularWebpackVisualStudio/wwwroot/index.html
 src/AngularWebpackVisualStudio/wwwroot/
-
 # Done by Don
 Client/wwwroot
+Server/internal_logs/internallog.txt
+**/Logs/*.*
