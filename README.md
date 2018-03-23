@@ -249,3 +249,10 @@ db.createUser(
 exit;
 
 mongo admin -u admin -p
+
+NuGet Config files used:
+    /Users/dev/Documents/_Projektli/KinderKultur_Docker/Server/nuget.config
+    /Users/dev/.config/NuGet/NuGet.Config
+
+Feeds used:
+    https://api.nuget.org/v3/index.json
