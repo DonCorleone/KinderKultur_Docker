@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
 	selector: 'app-custom-footer',
 	templateUrl: './customfooter.component.html',
-	styleUrls: ['/customfooter.component.scss']
+	styleUrls: ['./customfooter.component.scss']
 })
 
 export class CustomFooterComponent {

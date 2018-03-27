@@ -86,8 +86,12 @@ module.exports = {
 
     plugins: [
         // AoT plugin.
-        new ngToolsWebpack.AotPlugin({
-            tsConfigPath: './tsconfig-aot.json'
+        new ngToolsWebpack.AngularCompilerPlugin({
+       
+                tsConfigPath: './tsconfig-aot.json',
+                entryModule: './angularApp/app/app.module#AppModule',
+                sourceMap: true
+            
         }),
         new CleanWebpackPlugin(
             [
