@@ -15,13 +15,8 @@
       "dom"
     ]
   },
-
-  "include": [
-    "../**/*.ts",
-    "./angularApp/main-aot.ts",
-    "//Users/dev/Documents/_Projektli/KinderKultur_Docker/Client/aot/angularApp/app/app.module.ngfactory.ts"
-  ],
   "angularCompilerOptions": {
+    "genDir": "./aot",
     "entryModule": "./angularApp/app/app.module#AppModule",
     "skipMetadataEmit": true
   },
