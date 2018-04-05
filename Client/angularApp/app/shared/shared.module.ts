@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { CustomFooterComponent } from './components/customfooter/customfooter.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { MyFocus } from '../directives/focus.directive';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @NgModule({
 	imports: [
@@ -13,13 +15,19 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 
 	declarations: [
 		NavigationComponent,
-		CustomFooterComponent
+		CustomFooterComponent,
+		MyFocus,
+		SpinnerComponent
 	],
 
 	exports: [
 		NavigationComponent,
-		CustomFooterComponent
-	]
+		CustomFooterComponent,
+		MyFocus,
+		SpinnerComponent
+	],
+
+	providers: []
 })
 
 export class SharedModule { }
