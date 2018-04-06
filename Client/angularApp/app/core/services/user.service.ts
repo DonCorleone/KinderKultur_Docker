@@ -39,7 +39,7 @@ export class UserService extends BaseService {
 		const headers = new Headers({ 'Content-Type': 'application/json' });
 		const options = new RequestOptions({ headers: headers });
 
-		return this.http.post(this.baseUrl + '/accounts', body, options)
+		return this.http.post(this.baseUrl + 'accounts', body, options)
 			.map(res => true)
 			.catch(this.handleError);
 	}

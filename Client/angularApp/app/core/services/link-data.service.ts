@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Configuration } from './../../app.constants';
 import { Link } from './../../models/link';
+import { ConfigService } from '../../shared/utils/config.service';
 
 @Injectable()
 export class LinkService {
@@ -14,9 +15,9 @@ export class LinkService {
 	private actionUrl: string;
 	private headers: HttpHeaders;
 
-	constructor(private httpClient: HttpClient, private configuration: Configuration) {
+	constructor(private httpClient: HttpClient, private configuration: ConfigService) {
 
-		this.actionUrl = configuration.Server + 'api/v1/links/';
+		this.actionUrl =  configuration.getApiURI() + 'links/';
 
 		this.headers = new HttpHeaders();
 		this.headers = this.headers.set('Content-Type', 'application/json');

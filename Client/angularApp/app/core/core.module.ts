@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { Configuration } from '../app.constants';
 import { LinkService } from './services/link-data.service';
+import { ConfigService } from '../shared/utils/config.service';
 
 @NgModule({
 	imports: [
@@ -16,7 +16,7 @@ export class CoreModule {
 			ngModule: CoreModule,
 			providers: [
 				LinkService,
-				Configuration
+				ConfigService
 			]
 		};
 	}
