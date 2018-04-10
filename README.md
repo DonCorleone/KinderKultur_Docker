@@ -1,5 +1,7 @@
 # Angular 4 with Bootstrap 4.0.0 Beta via ASP Net Core 2.0 WebApi Backend on MongoDB packed by WebPack 3.6
 
+![vs_webpack_angular2](https://damienbod.files.wordpress.com/2016/06/vs_webpack_angular2.png?w=600)
+
 ## Features
 
 - Angular [AoT compilation](https://angular.io/guide/aot-compiler)
