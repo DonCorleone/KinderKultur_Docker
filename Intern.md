@@ -1,5 +1,9 @@
 # Angular 4 with Bootstrap 4.0.0 Beta via ASP Net Core 2.0 WebApi Backend on MongoDB packed by WebPack 3.6
 
+![vs_webpack_angular2](https://damienbod.files.wordpress.com/2016/06/vs_webpack_angular2.png?w=600)
+
+<https://damienbod.com/2016/06/12/asp-net-core-angular2-with-webpack-and-visual-studio/>
+
 ## Features
 
 - Angular [AoT compilation](https://angular.io/guide/aot-compiler)
@@ -142,6 +146,18 @@ npm test
 ```
 See this link for more details on Angular testing: https://angular.io/guide/testing
 
+## <a name="5"></a>Dotnet Template
+To install a template for this package we prepared a `template.json` to do that.
+
+Just run `dotnet new --install <PATH>` where <PATH> is the path to the folder where the `.template.config` folder lives.
+
+After that you should see the template when running `dotnet new` on commandline
+
+![dotnetnew](.github/dotnet-new.jpg "dotnetnew")
+
+Now you can use the temaplte with `dotnet new angularwebapi`
+
+
 ## <a name="6"></a>Notes
 The Webpack configuration could also build all of the scss and css files to a separate _app.css_ or _app."hash".css_ which could be loaded as a single file in the distribution. Some of the vendor js and css could also be loaded directly in the html header using the _index.html_ file and not included in the Webpack build.
 
@@ -233,6 +249,10 @@ db.createUser(
 exit;
 
 mongo admin -u admin -p
+
+NuGet Config files used:
+    /Users/dev/Documents/_Projektli/KinderKultur_Docker/Server/nuget.config
+    /Users/dev/.config/NuGet/NuGet.Config
 
 Feeds used:
     https://api.nuget.org/v3/index.json
