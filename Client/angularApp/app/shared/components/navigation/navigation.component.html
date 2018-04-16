@@ -6,12 +6,20 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
+        <ul *ngIf="status" class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <li><a class="nav-link" [routerLink]="['/home']">Home</a></li>
                 <li><a class="nav-link" [routerLink]="['/links']">Links</a></li>
-                <li><a class="nav-link" [routerLink]="['/notes']">Notes</a></li>
+                <li><a class="nav-link" [routerLink]="['/links/editable']">Edit Links</a></li>
+                <li><a class="nav-link" (click)="logout()" href="#">Logoff</a>
+        </ul>
+        <ul *ngIf="!status" class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <li><a class="nav-link" [routerLink]="['/home']">Home</a></li>
+                <li><a class="nav-link" [routerLink]="['/links']">Links</a></li>
                 <li><a class="nav-link" [routerLink]="['/register']">Register</a></li>
+                <li><a class="nav-link" [routerLink]="['/login']">Login by eMail</a></li>
+                <li><a class="nav-link" [routerLink]="['/facebook-login']">Login by Facebook ID</a></li>
         </ul>
         <span class="navbar-text">
 

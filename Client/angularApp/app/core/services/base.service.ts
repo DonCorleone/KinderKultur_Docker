@@ -19,7 +19,7 @@ export abstract class BaseService {
 		if (!serverError.type) {
 			for (const key in serverError) {
 				if (serverError[key]) {
-					modelStateErrors += serverError[key].message + '\n';
+					modelStateErrors += serverError[key] + '\n';
 				}
 			}
 		}
