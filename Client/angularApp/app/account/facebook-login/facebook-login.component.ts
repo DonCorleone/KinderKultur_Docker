@@ -54,7 +54,7 @@ export class FacebookLoginComponent {
 				// tslint:disable-next-line:no-shadowed-variable
 				result => {
 					if (result) {
-						this.router.navigate(['/dashboard/home']);
+						this.router.navigate(['/home']);
 					}
 				},
 				error => {

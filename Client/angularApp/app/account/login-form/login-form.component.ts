@@ -47,7 +47,7 @@ private subscription: Subscription;
 				.subscribe(
 					result => {
 						if (result) {
-							this.router.navigate(['/dashboard/home']);
+							this.router.navigate(['/home']);
 						}
 					},
 					error => this.errors = error);

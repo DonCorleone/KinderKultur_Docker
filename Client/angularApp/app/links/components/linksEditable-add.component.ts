@@ -15,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 export class LinksEditableAddComponent implements OnInit {
 
 	link: Link;
+	errors: String;
 
 	constructor(
 		private linkService: LinkService,
@@ -28,6 +29,7 @@ export class LinksEditableAddComponent implements OnInit {
 
 	save(): void {
 		this.linkService.create(this.link)
+		.catch(errors => this.errors)
 		.then(() => this.goBack());
 	}
 

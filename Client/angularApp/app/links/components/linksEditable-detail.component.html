@@ -32,12 +32,12 @@
 								<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the URL ..." name="linkUrlDesc" [(ngModel)]="link.urldesc"
 								 required>
 							</div>
-						</div>
-
-						<!--div class="card-footer">
-							<button type="submit" class="btn btn-primary" [disabled]="!linkForm.valid">Create new Link</button>
-						</div-->
+						</div>    
 					</div>
+					<div *ngIf="errors" class="alert alert-danger" role="alert">
+						<strong>Oops!</strong> {{errors}}
+					 </div>               
+				  
 				</form>
 			</div>
 			<button class="btn btn-secondary wizardButton" (click)="goBack()">Back</button>

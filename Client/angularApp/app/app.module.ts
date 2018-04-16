@@ -14,15 +14,12 @@ import { SharedModule } from './shared/shared.module';
 
 /* Account Imports */
 import { AccountModule } from './account/account.module';
-/* Dashboard Imports */
-import { DashboardModule } from './dashboard/dashboard.module';
 
 import { ConfigService } from './shared/utils/config.service';
 
 @NgModule({
 	imports: [
 		AccountModule,
-		DashboardModule,
 		BrowserModule,
 		FormsModule, // Include it under 'imports' in your application module
 		// after BrowserModule.

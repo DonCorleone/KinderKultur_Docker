@@ -15,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 export class LinksEditableDetailComponent implements OnInit {
 
 	link: Link;
+	errors: string;
 
 	constructor(
 		private linkService: LinkService,
@@ -23,6 +24,7 @@ export class LinksEditableDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.errors = '';
 		this.route.paramMap
 			.switchMap((params: ParamMap) => this.linkService.getSingle(params.get('id')))
 			.subscribe(link => this.link = link);
@@ -30,8 +32,9 @@ export class LinksEditableDetailComponent implements OnInit {
 
 	save(): void {
 		this.linkService.update(this.link.id, this.link)
+		.catch(errors => this.errors)
 		.then(() => this.goBack());
-	}
+		}
 
 	goBack(): void {
 		this.location.back();

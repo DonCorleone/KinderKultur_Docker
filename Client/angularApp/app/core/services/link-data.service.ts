@@ -35,7 +35,8 @@ export class LinkService {
 		return this.httpClient
 			.get<Link>(this.actionUrl + id.toString(), {
 				headers: this.headers.append('Authorization', `Bearer ${authToken}`)
-			});
+			})
+			.catch(this.handleError);
 	}
 
 	create(linkToAdd: Link): Promise<Link> {
