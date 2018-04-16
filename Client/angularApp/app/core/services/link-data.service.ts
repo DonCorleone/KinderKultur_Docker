@@ -43,18 +43,10 @@ export class LinkService {
 		const newLink = JSON.stringify({
 			name: linkToAdd.name
 		});
+		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
 			.post(this.actionUrl, linkToAdd,
-				// 	JSON.stringify({
-				// 	name: linkToAdd.name
-				// }) + JSON.stringify({
-				// 	desc: linkToAdd.desc
-				// }) + JSON.stringify({
-				// 	url: linkToAdd.url
-				// }) + JSON.stringify({
-				// 	urldesc: linkToAdd.urldesc
-				// }),
-				{ headers: this.headers })
+				{ headers: this.headers.append('Authorization', `Bearer ${authToken}`) })
 			.toPromise()
 			.then(res => res as Link)
 			.catch(this.handleError);
