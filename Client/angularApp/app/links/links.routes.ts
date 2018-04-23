@@ -4,12 +4,14 @@ import { LinksComponent } from './components/links.component';
 import { LinksEditableComponent } from './components/linksEditable.component';
 import { LinksEditableDetailComponent } from './components/linksEditable-detail.component';
 import { LinksEditableAddComponent } from './components/linksEditable-add.component';
+import { AuthGuard } from '../auth.guard';
+import { ModuleWithProviders } from '@angular/core';
 
-const routes: Routes = [
+// const routes: Routes = ;
+
+export const LinksRoutes: ModuleWithProviders = RouterModule.forChild([
 	{ path: '', component: LinksComponent },
-	{ path: 'editable', component: LinksEditableComponent },
-	{ path: 'detail/:id', component: LinksEditableDetailComponent },
-	{ path: 'add', component: LinksEditableAddComponent }
-];
-
-export const LinksRoutes = RouterModule.forChild(routes);
+	{ path: 'editable', component: LinksEditableComponent, canActivate: [AuthGuard] },
+	{ path: 'detail/:id', component: LinksEditableDetailComponent, canActivate: [AuthGuard] },
+	{ path: 'add', component: LinksEditableAddComponent, canActivate: [AuthGuard] }
+]);

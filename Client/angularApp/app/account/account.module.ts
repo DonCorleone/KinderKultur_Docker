@@ -7,7 +7,7 @@ import { UserService } from '../core/services/user.service';
 
 import { EmailValidator } from '../directives/email.validator.directive';
 
-import { routing } from './account.routing';
+import { AccountRouting } from './account.routing';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
@@ -15,7 +15,7 @@ import { FacebookLoginComponent } from './facebook-login/facebook-login.componen
 
 @NgModule({
 	imports: [
-		CommonModule, FormsModule, routing, SharedModule
+		CommonModule, FormsModule, AccountRouting, SharedModule
 	],
 	declarations: [
 		RegistrationFormComponent,
