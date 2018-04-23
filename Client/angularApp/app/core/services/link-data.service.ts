@@ -30,7 +30,6 @@ export class LinkService {
 
 	getSingle(id: string): Observable<Link> {
 
-		// TODO
 		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
 			.get<Link>(this.actionUrl + id.toString(), {
@@ -73,11 +72,6 @@ export class LinkService {
 			.catch(this.handleError);
 	}
 
-	handleError(error: any): Promise<any> {
-		console.error('An error occurred', error); // for demo purposes only
-		return Promise.reject(error.message || error);
-	}
-
 	delete(id: string): Promise<void> {
 		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
@@ -87,5 +81,10 @@ export class LinkService {
 			.toPromise()
 			.then(() => null)
 			.catch(this.handleError);
+	}
+
+	handleError(error: any): Promise<any> {
+		console.error('An error occurred', error); // for demo purposes only
+		return Promise.reject(error.message || error);
 	}
 }

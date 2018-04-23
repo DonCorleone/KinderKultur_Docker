@@ -32,10 +32,14 @@ export class LinksEditableDetailComponent implements OnInit {
 	}
 
 	save(): void {
-		this.linkService.update(this.link.id, this.link)
-		.catch(errors => this.errors)
-		.then(() => this.goBack());
+		if (this.link === undefined) {
+			this.errors = 'link undefined.';
+		} else {
+			this.linkService.update(this.link.id, this.link)
+			.catch(errors => this.errors)
+			.then(() => this.goBack());
 		}
+	}
 
 	goBack(): void {
 		this.location.back();
