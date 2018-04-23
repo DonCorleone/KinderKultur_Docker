@@ -1,9 +1,12 @@
 <div class="container-fluid">
+	<div *ngIf="errors" class="alert alert-danger" role="alert">
+		<strong>Oops!</strong> {{errors}}
+	</div>
 	<div class="row">
 		<div class="col">
 			<div *ngIf="link">
 
-				<form  (ngSubmit)="save()" #linkForm="ngForm">
+				<form (ngSubmit)="save()" #linkForm="ngForm">
 					<div class="card">
 
 						<div class="card-body">
@@ -29,15 +32,15 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputLinkUrlDesc">URLDesc</label>
-								<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the URL ..." name="linkUrlDesc" [(ngModel)]="link.urldesc"
-								 required>
+								<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the URL ..." name="linkUrlDesc"
+								   [(ngModel)]="link.urldesc" required>
 							</div>
-						</div>    
+						</div>
 					</div>
 					<div *ngIf="errors" class="alert alert-danger" role="alert">
 						<strong>Oops!</strong> {{errors}}
-					 </div>               
-				  
+					</div>
+
 				</form>
 			</div>
 			<button class="btn btn-secondary wizardButton" (click)="goBack()">Back</button>

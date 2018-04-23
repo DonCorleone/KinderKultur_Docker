@@ -27,7 +27,8 @@ export class LinksEditableDetailComponent implements OnInit {
 		this.errors = '';
 		this.route.paramMap
 			.switchMap((params: ParamMap) => this.linkService.getSingle(params.get('id')))
-			.subscribe(link => this.link = link);
+			.subscribe(link => this.link = link, error => this.errors = error)
+		;
 	}
 
 	save(): void {

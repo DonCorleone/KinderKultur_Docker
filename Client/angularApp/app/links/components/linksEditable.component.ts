@@ -23,17 +23,24 @@ export class LinksEditableComponent implements OnInit {
 		this.getAllLinks();
 	}
 
-	addLink(): void {
-		this.router.navigate(['links/add']);
-	}
-
 	deleteLink(link: Link): void {
 		this.linkService
-			.delete(link.id)
+			.delete(link.id) // Promise
 			.then(() => {
 				this.links = this.links.filter(h => h !== link);
 				if (this.selectedLink === link) { this.selectedLink = null; }
-			});
+			})
+			.catch(error => this.message = error); // Promise catch
+	}
+
+	getAllLinks() {
+		this.linkService
+			.getAll() // Observable
+			.subscribe(
+				data => this.links = data,
+				error => this.message = error, // Observable catch
+				() => console.log('Get all complete')
+			);
 	}
 
 	onSelect(link: Link): void {
@@ -42,17 +49,11 @@ export class LinksEditableComponent implements OnInit {
 		this.gotoDetail();
 	}
 
-	getAllLinks() {
-		this.linkService
-			.getAll()
-			.subscribe(
-				data => this.links = data,
-				error => console.log(error),
-				() => console.log('Get all complete')
-			);
-	}
-
 	gotoDetail(): void {
 		this.router.navigate(['links/detail', this.selectedLink.id]);
+	}
+
+	addLink(): void {
+		this.router.navigate(['links/add']);
 	}
 }
