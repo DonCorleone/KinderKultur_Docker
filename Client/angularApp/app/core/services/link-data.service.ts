@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Configuration } from './../../app.constants';
+// import { Configuration } from './../../app.constants';
 import { Link } from './../../models/link';
 import { ConfigService } from '../../shared/utils/config.service';
 

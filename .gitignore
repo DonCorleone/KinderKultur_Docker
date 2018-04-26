@@ -312,6 +312,7 @@ aot/
 **/angularApp/app/**/*.js
 **/angularApp/app/**/*.map
 **/angularApp/app/*.js
+!**/angularApp/app/app.constants.js
 **/angularApp/app/*.map
 **/angularApp/*.js
 **/angularApp/*.map
