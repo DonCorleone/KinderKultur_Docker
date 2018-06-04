@@ -112,16 +112,16 @@ MIT
 
 ### MongoDB
 
-#### Start
+#### Start Mongo DB locally
 
     cd /usr/local/bin
     mongod --config mongod.cfg
     
+#### Import
     /Users/dev/Documents/imports/links.json
 mongoimport --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
 mongoimport -h 127.0.0.1:1111 --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
 -h <hostname><:port>
-
 
 #### credits
 
@@ -136,3 +136,9 @@ db.createUser(
 exit;
 
 mongo admin -u admin -p
+
+### Maria DB
+
+#### Start Maria DB via Docker
+
+docker start 5a0511713f76
