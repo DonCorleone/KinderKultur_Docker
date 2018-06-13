@@ -328,3 +328,6 @@ src/AngularWebpackVisualStudio/wwwroot/
 Client/wwwroot
 Server/internal_logs/internallog.txt
 **/Logs/*.*
+
+# Cretificates
+localhost*.*

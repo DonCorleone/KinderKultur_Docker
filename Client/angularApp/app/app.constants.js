@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Injectable } from '@angular/core';
 var Configuration = (function () {
     function Configuration() {
-        this.Server = 'http://localhost:5000/';
+        this.Server = 'https://localhost:5001/';
         this.ApiUrl = 'api/links';
         this.ServerWithApiUrl = this.Server + this.ApiUrl;
     }
