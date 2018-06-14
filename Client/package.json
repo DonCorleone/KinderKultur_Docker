@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "concurrently \"webpack-dev-server --env=dev --hot --inline\"",
+    "start": "concurrently \"webpack-dev-server --https --env=dev --hot --inline\"",
     "webpack-dev": "webpack --env=dev",
     "webpack-production": "webpack --env=prod",
     "build-dev": "npm run webpack-dev",
