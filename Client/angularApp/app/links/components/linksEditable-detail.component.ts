@@ -5,7 +5,7 @@ import { Location }                 from '@angular/common';
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
 
-import 'rxjs/add/operator/switchMap';
+
 
 @Component({
 	selector: 'app-links-editable-detail',

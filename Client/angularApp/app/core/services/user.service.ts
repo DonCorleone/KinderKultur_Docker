@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions } from '@angular/http';
 
 import { UserRegistration } from '../../models/user.registration.interface';
 import { ConfigService } from '../../shared/utils/config.service';
 
 import { BaseService } from './base.service';
 
-import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/Rx';
+import { Observable ,  BehaviorSubject } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
+import { UserLogin } from '../../models/user.login.interface';
 
 // Add the RxJS Observable operators we need in this app.
 // import '../../rxjs-operators';
@@ -24,6 +23,7 @@ export class UserService extends BaseService {
 	authNavStatus$ = this._authNavStatusSource.asObservable();
 
 	private loggedIn = false;
+	private headers: HttpHeaders;
 
 	constructor(private http: HttpClient, private configService: ConfigService) {
 		super();
@@ -41,28 +41,24 @@ export class UserService extends BaseService {
 				'Content-Type':  'application/json',
 			})
 		};
-		return this.http.post(this.baseUrl + '/accounts', body, httpOptions)
-			.map(res => true)
-			.catch(this.handleError);
+		return this.http.post<UserRegistration>(this.baseUrl + '/accounts', body, httpOptions);
 	}
 
 	login(userName: string, password: string) {
-		const headers = new HttpHeaders();
-		headers.append('Content-Type', 'application/json');
+		this.headers = new HttpHeaders();
+		this.headers = this.headers.set('Content-Type', 'application/json');
 
 		return this.http
-			.post(
+			.post<UserLogin>(
 				this.baseUrl + '/auth/login',
-				JSON.stringify({ userName, password }), { headers }
+				JSON.stringify({ userName, password }), { headers: this.headers }
 			)
-			// ToDo Angular 4+
-			//
-			// .map(res => {
-			// 	localStorage.setItem('auth_token', res.auth_token);
-			// 	this.loggedIn = true;
-			// 	this._authNavStatusSource.next(true);
-			// 	return true;
-			// })
+			.map(res => {
+				localStorage.setItem('auth_token', res.auth_token);
+				this.loggedIn = true;
+				this._authNavStatusSource.next(true);
+				return true;
+			})
 			.catch(this.handleError);
 	}
 
@@ -87,12 +83,12 @@ export class UserService extends BaseService {
 			.post(
 				this.baseUrl + '/externalauth/facebook', body, httpOptions)
 			// ToDo Angular 4+
-			// .map(res => {
-			// 	localStorage.setItem('auth_token', res.auth_token);
-			// 	this.loggedIn = true;
-			// 	this._authNavStatusSource.next(true);
-			// 	return true;
-			// })
+			.map(res => {
+				localStorage.setItem('auth_token', res.toString());
+				this.loggedIn = true;
+				this._authNavStatusSource.next(true);
+				return true;
+			})
 			.catch(this.handleError);
 	}
 }

@@ -1,9 +1,7 @@
-﻿import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+// tslint:disable-next-line:import-blacklist
+import { Observable } from 'rxjs';
 
 // import { Configuration } from './../../app.constants';
 import { Link } from './../../models/link';
@@ -11,12 +9,13 @@ import { ConfigService } from '../../shared/utils/config.service';
 
 @Injectable()
 export class LinkService {
-
 	private actionUrl: string;
 	private headers: HttpHeaders;
 
-	constructor(private httpClient: HttpClient, private configuration: ConfigService) {
-
+	constructor(
+		private httpClient: HttpClient,
+		private configuration: ConfigService
+	) {
 		this.actionUrl = configuration.getApiURI() + '/links/';
 
 		this.headers = new HttpHeaders();
@@ -25,16 +24,17 @@ export class LinkService {
 	}
 
 	getAll(): Observable<Link[]> {
-		return this.httpClient.get<Link[]>(this.actionUrl, { headers: this.headers });
+		return this.httpClient.get<Link[]>(this.actionUrl, {
+			headers: this.headers
+		});
 	}
 
 	getSingle(id: string): Observable<Link> {
-
 		const authToken = localStorage.getItem('auth_token');
+		this.headers = this.headers.set('Authorization', `Bearer ${authToken}`);
+
 		return this.httpClient
-			.get<Link>(this.actionUrl + id.toString(), {
-				headers: this.headers.append('Authorization', `Bearer ${authToken}`)
-			})
+			.get<Link>(this.actionUrl + id.toString(), { headers: this.headers })
 			.catch(this.handleError);
 	}
 
@@ -44,28 +44,19 @@ export class LinkService {
 		});
 		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
-			.post(this.actionUrl, linkToAdd,
-				{ headers: this.headers.append('Authorization', `Bearer ${authToken}`) })
+			.post(this.actionUrl, linkToAdd, {
+				headers: this.headers.set('Authorization', `Bearer ${authToken}`)
+			})
 			.toPromise()
 			.then(res => res as Link)
 			.catch(this.handleError);
-	}
-
-	add(linkToAdd: Link): Observable<Link> {
-		const toAdd = JSON.stringify({ name: linkToAdd.name });
-
-		const authToken = localStorage.getItem('auth_token');
-		return this.httpClient
-			.post<Link>(this.actionUrl, toAdd, {
-				headers: this.headers.append('Authorization', `Bearer ${authToken}`)
-			});
 	}
 
 	update(id: string, itemToUpdate: Link): Promise<Link> {
 		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
 			.put<Link>(this.actionUrl + id, itemToUpdate, {
-				headers: this.headers.append('Authorization', `Bearer ${authToken}`)
+				headers: this.headers.set('Authorization', `Bearer ${authToken}`)
 			})
 			.toPromise()
 			.then(() => itemToUpdate)
@@ -76,7 +67,7 @@ export class LinkService {
 		const authToken = localStorage.getItem('auth_token');
 		return this.httpClient
 			.delete(this.actionUrl + id, {
-				headers: this.headers.append('Authorization', `Bearer ${authToken}`)
+				headers: this.headers.set('Authorization', `Bearer ${authToken}`)
 			})
 			.toPromise()
 			.then(() => null)
