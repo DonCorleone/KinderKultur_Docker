@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // Import HttpClientModule from @angular/common/http
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, XHRBackend } from '@angular/http';
+import { XHRBackend } from '@angular/http';
 import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
 
 import { AppComponent } from './app.component';
