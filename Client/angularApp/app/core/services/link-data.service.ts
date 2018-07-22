@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 // import { Configuration } from './../../app.constants';
 import { Link } from './../../models/link';
 import { ConfigService } from '../../shared/utils/config.service';
+import { UserLogin } from '../../models/user.login';
 
 @Injectable()
 export class LinkService {
@@ -30,7 +31,7 @@ export class LinkService {
 	}
 
 	getSingle(id: string): Observable<Link> {
-		const authToken = localStorage.getItem('auth_token');
+		const authToken = localStorage.getItem(UserLogin.AUTH_TOKEN);
 		this.headers = this.headers.set('Authorization', `Bearer ${authToken}`);
 
 		return this.httpClient
@@ -42,7 +43,7 @@ export class LinkService {
 		const newLink = JSON.stringify({
 			name: linkToAdd.name
 		});
-		const authToken = localStorage.getItem('auth_token');
+		const authToken = localStorage.getItem(UserLogin.AUTH_TOKEN);
 		return this.httpClient
 			.post(this.actionUrl, linkToAdd, {
 				headers: this.headers.set('Authorization', `Bearer ${authToken}`)
@@ -53,7 +54,7 @@ export class LinkService {
 	}
 
 	update(id: string, itemToUpdate: Link): Promise<Link> {
-		const authToken = localStorage.getItem('auth_token');
+		const authToken = localStorage.getItem(UserLogin.AUTH_TOKEN);
 		return this.httpClient
 			.put<Link>(this.actionUrl + id, itemToUpdate, {
 				headers: this.headers.set('Authorization', `Bearer ${authToken}`)
@@ -64,7 +65,7 @@ export class LinkService {
 	}
 
 	delete(id: string): Promise<void> {
-		const authToken = localStorage.getItem('auth_token');
+		const authToken = localStorage.getItem(UserLogin.AUTH_TOKEN);
 		return this.httpClient
 			.delete(this.actionUrl + id, {
 				headers: this.headers.set('Authorization', `Bearer ${authToken}`)

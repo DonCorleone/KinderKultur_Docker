@@ -7,7 +7,8 @@ import { BaseService } from './base.service';
 
 import { Observable ,  BehaviorSubject } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
-import { UserLogin } from '../../models/user.login.interface';
+import { IUserLogin } from '../../models/user.login.interface';
+import { UserLogin } from '../../models/user.login';
 
 // Add the RxJS Observable operators we need in this app.
 // import '../../rxjs-operators';
@@ -27,7 +28,7 @@ export class UserService extends BaseService {
 
 	constructor(private http: HttpClient, private configService: ConfigService) {
 		super();
-		this.loggedIn = !!localStorage.getItem('auth_token');
+		this.loggedIn = !!localStorage.getItem(UserLogin.AUTH_TOKEN);
 		// ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
 		// header component resulting in authed user nav links disappearing despite the fact user is still logged in
 		this._authNavStatusSource.next(this.loggedIn);
@@ -49,12 +50,12 @@ export class UserService extends BaseService {
 		this.headers = this.headers.set('Content-Type', 'application/json');
 
 		return this.http
-			.post<UserLogin>(
+			.post<IUserLogin>(
 				this.baseUrl + '/auth/login',
 				JSON.stringify({ userName, password }), { headers: this.headers }
 			)
 			.map(res => {
-				localStorage.setItem('auth_token', res.auth_token);
+				localStorage.setItem(UserLogin.AUTH_TOKEN, res.auth_token);
 				this.loggedIn = true;
 				this._authNavStatusSource.next(true);
 				return true;
@@ -63,7 +64,7 @@ export class UserService extends BaseService {
 	}
 
 	logout() {
-		localStorage.removeItem('auth_token');
+		localStorage.removeItem(UserLogin.AUTH_TOKEN);
 		this.loggedIn = false;
 		this._authNavStatusSource.next(false);
 	}
@@ -84,7 +85,7 @@ export class UserService extends BaseService {
 				this.baseUrl + '/externalauth/facebook', body, httpOptions)
 			// ToDo Angular 4+
 			.map(res => {
-				localStorage.setItem('auth_token', res.toString());
+				localStorage.setItem(UserLogin.AUTH_TOKEN, res.toString());
 				this.loggedIn = true;
 				this._authNavStatusSource.next(true);
 				return true;
