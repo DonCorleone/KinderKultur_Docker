@@ -7,7 +7,7 @@
 
 ## Modifications by Don Corleone
 
-* Divided in two Projects (Client / Server) fot Docker- hosting
+* Divided in two Projects (Client / Server) for Docker- hosting
 * Bootstrap 4
 * Ejected Webpack
 

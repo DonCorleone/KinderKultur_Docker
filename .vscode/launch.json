@@ -3,6 +3,66 @@
     // Use hover for the description of the existing attributes
     // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
     "version": "0.2.0",
+    "compounds": [{
+      "name": "[Development] Debug Server & Client",
+      "configurations": ["Start Server (.Net Core)", "Launch Angular Webpack", "Launch Chrome against localhost"]
+    }],
     "configurations": [
+        {
+            "name": "Start Server (.Net Core)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp2.1/AngularWebpackVisualStudio.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Server",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": false,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Server/Views"
+            }
+        },{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome against localhost",
+			"url": "https://localhost:8080",
+			"webRoot": "${workspaceFolder}/Client",
+		},
+		{
+			"name": "Launch Angular Webpack",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/Client/node_modules/.bin/webpack-dev-server",
+			"stopOnEntry": false,
+			"args": ["--env=dev", "--hot", "--inline", "."],
+			"cwd": "${workspaceRoot}/Client",
+			"runtimeExecutable": null,
+			"runtimeArgs": [],
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"console": "integratedTerminal",
+			"sourceMaps": true,
+            "port": 8080,
+            "timeout": 60000
+		},
     ]
 }
