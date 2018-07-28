@@ -1,158 +1,56 @@
-# Angular 4 with Bootstrap 4.0.0 Beta via ASP Net Core 2.0 WebApi Backend on MongoDB packed by WebPack 3.6
+# Angular 6 with Bootstrap 4 via ASP Net Core 2.1 WebApi Backend on MongoDB and MariaDB packed by WebPack 3.6
 
-![vs_webpack_angular2](https://damienbod.files.wordpress.com/2016/06/vs_webpack_angular2.png?w=600)
+## Original Repository
 
-## Features
+[GitHub](https://github.com/damienbod/AngularWebpackVisualStudio)
+[Blog](https://damienbod.com/2016/06/12/asp-net-core-angular2-with-webpack-and-visual-studio/)
 
-- Angular [AoT compilation](https://angular.io/guide/aot-compiler)
-- Angular [Lazy-loading modules with the router](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
-- Angular [Style Guide](https://angular.io/guide/styleguide)
-- Webpack [Hot Module Replacement](https://webpack.js.org/guides/hot-module-replacement/)
-- Webpack [DevServer](https://webpack.js.org/configuration/dev-server/)
-- Development & Production builds
-- SASS, CSS
-- Testing client using _Jasmine_ and _Karma_
-- Testing server usign _xUnit_
-- _Yarn_ & _npm 5_
-- MongoDB
+## Modifications by Don Corleone
 
-## Table of contents
+* Divided in two Projects (Client / Server) fot Docker- hosting
+* Bootstrap 4
+* Ejected Webpack
 
-* [Project structure](#1)
-* [Installing](#2)
-* [Running](#3)
-	* [Commands](#3.1)
-	* [Development](#3.2)
-	* [Production](#3.3)
-* [Testing](#4)
-* [Dotnet Template](#5)
-* [Notes](#6)
-* [Links](#7)
+### Project - Description (German)
 
-## <a name="1"></a>Project structure
+> Neuentwicklung www.kinderkultur.ch als Webapplikation mit Datenbankanbindung mit dem Ziel, als eigenständiges CMS fungieren zu können. Noch nicht produktiv.
 
-- **src**
-	- **AngularWebpackVisualStudio** _ASP.NET Core Web API project_
-		- **.template.config** _Folder containing the template information about the dotnet new template_
-		- **wwwroot** _Root for Angular application deployment_
-		- **angularApp** _Angular application_
-			- **main.ts** _Entry point for JiT compilation_
-			- **main-aot.ts** _Entry point for AoT compilation_
-			- **tests** _Client tests_
-		- **config** _Folder for configuration files_
-			- **webpack.dev.js** _webpack configuration file for development_
-			- **webpack.prod.js** _webpack configuration file for production_
-			- **webpack.test.js** _webpack configuration file for testing_
-			- **spec.bundle.js** _Used for client testing_
-		- **Controllers** _Folder for API controllers_
-		- **Models** _Folder for models_
-		- **Startup.cs** _Web API configuration_
-		- **package.json** _Packages for Angular app_
-		- **karma.conf.js** _Karma configuration for client testing_
-		- **tsconfig.json** & **tsconfig-aot.json** _TypeScript & ngc compiler options_
-		- **webpack.config.js** _Webpack configuration file for development & production of Angular app_
-- **tests**
-	- **AngularWebpackVisualStudio_Tests** _API tests_	
+* Frontend: Browseranwendung
+  * [TS](https://www.typescriptlang.org)- Framework: [Angular 6](https://angular.io/docs) mit [Ejected Angular Cli](https://github.com/angular/angular-cli/wiki/eject)  
+  * Bundling: [Webpack 3.6](https://webpack.js.org)
+  * CSS- Framework: [Bootstrap 4](https://getbootstrap.com) mit [SASS / SCSS](https://sass-lang.com)
 
-## <a name="2"></a>Installing
+* Backend: [ASP.NET Core 2.1](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.1) Web-API (REST)
+  * CRUD & Patch
+  * API Versioning
+  * Authentication via [.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-2.1&tabs=visual-studio%2Caspnetcore2x) und [JWT](https://tools.ietf.org/html/rfc7519)
+  * Logging via [NLog](http://nlog-project.org)
+  * [EntityFramework Core](https://docs.microsoft.com/en-us/ef/core/) auf [MariaDB](https://mariadb.org/)
+  * [.Net MongoDB Driver](https://docs.mongodb.com/ecosystem/drivers/csharp/) auf [MongoDB](https://www.mongodb.com)
+  * Swagger ([NSwag](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-nswag?view=aspnetcore-2.1&tabs=visual-studio%2Cvisual-studio-xml))
+  * Repository Pattern with Dependency Injection and ViewModels
+  * [AutoMapper](http://automapper.readthedocs.io) via Dependency Injection
 
-Requirements:
+* Database: SQL & NoSQL
+  * Content:  [MongoDB](https://www.mongodb.com) Entwicklung auf lokalem Server
+  * Authentication: [MariaDB](https://mariadb.org/) (MySQL-Derrivat), auf [Docker](https://www.docker.com)-Container
 
-- At least [.NET Core 2.0.0](https://www.microsoft.com/net/download/core)
-- At least _node 6.9_ and _npm 4_
+* Versionsverwaltung
+    * [Git](https://git-scm.com) auf [GitHub- Repository](https://github.com/DonCorleone/KinderKultur_Docker)
 
-#### Yarn
+* Enwicklungsumgebung Hardware
+  * Apple MacBook Pro
 
-You can use this template also with [yarn](https://yarnpkg.com/en/docs/install).
+* Entwicklungsumgebung Software:
+  * MacOS 10.13 (High Sierra)
+  * Visual Studio Code (TypeScript, HTML, SCSS, C#, MongoShell)
+  * Postman (API-Testing)
+  * Robo 3T (Mongo-DB)
+  * Sequel Pro (Maria-DB)
 
-
-#### NPM Task Runner
-
-The _NPM Task Runner_ can be used to build the client application from inside Visual Studio. This task runner can be downloaded from:
-
-https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner
-
-#### MongoDB C# Driver
-
-https://github.com/fpetru/WebApiMongoDB
-http://www.qappdesign.com/using-mongodb-with-net-core-webapi/
-
-## <a name="3"></a>Running
-
-The ASP.NET Core application contains both the server side API services and also hosts the Angular client application. The source code for the Angular application is implemented in the _angularApp_ folder. Webpack is then used to deploy the application, using the development build or a production build, which deploys the application to the wwwroot folder. This makes it easy to deploy the application using the standard tools from Visual Studio with the standard configurations.
-
-### .NET Core Web API Versioning
-
-https://www.hanselman.com/blog/ASPNETCoreRESTfulWebAPIVersioningMadeEasy.aspx
-
-### <a name="3.1"></a>Commands
-
-The npm scripts are used to build, watch the client application as required. The scripts can be run from the command line or the _NPM Task Runner_.
-
-The _watch-webpack-dev_ npm script automatically starts in Visual Studio because it has been added to the _package.json_:
-```
-"-vs-binding": { "ProjectOpened": [ "watch-webpack-dev" ] }
-```
-
-All available commands are the following:
-```
-"start": "concurrently \"webpack-dev-server --env=dev --hot --inline --port 8080\" \"dotnet run\" ",
-"webpack-dev": "webpack --env=dev",
-"webpack-production": "webpack --env=prod",
-"build-dev": "npm run webpack-dev",
-"build-production": "npm run webpack-production",
-"watch-webpack-dev": "webpack --env=dev --watch --color",
-"watch-webpack-production": "npm run build-production --watch --color",
-"publish-for-iis": "npm run build-production && dotnet publish -c Release",
-"test": "karma start",
-"test-watch": "karma start --no-single-run",
-"lint": "tslint ./angularApp"
-```
-
-### <a name="3.2"></a>Development
-For the Angular app, we use _JiT compilation_.
-```
-npm run build-dev
-```
-#### Watch for development
-```
-npm run watch-webpack-dev
-```
-#### Hot Module Replacement
-```
-npm start
-```
-
-### <a name="3.3"></a>Production
-For the Angular app, we use _AoT compilation_, tree shaking & minification.
-```
-npm run webpack-production
-```
-
-## <a name="4"></a>Testing
-The _xUnit_ test for ASP.NET Core API is in _tests/AngularWebpackVisualStudio_Tests_ folder:
-```
-dotnet test
-```
-or from Visual Studio: _Test -> Run -> All Tests_
-
-See this link for more details on _xUnit_ testing in ASP.NET Core: https://docs.microsoft.com/it-it/dotnet/articles/core/testing/unit-testing-with-dotnet-test
-
-The Angular test is in _angularApp/tests_ folder. It uses _Karma_ test runner and _Jasmine_ test framework:
-```
-npm test
-```
-See this link for more details on Angular testing: https://angular.io/guide/testing
-
-## <a name="6"></a>Notes
-The Webpack configuration could also build all of the scss and css files to a separate _app.css_ or _app."hash".css_ which could be loaded as a single file in the distribution. Some of the vendor js and css could also be loaded directly in the html header using the _index.html_ file and not included in the Webpack build.
-
-## <a name="7"></a>Links
-- [Lazy Loading](https://github.com/damienbod/Angular2WebpackVisualStudio/tree/master/docs/LAZY_LOADING.md)
-- [Hot Module Replacement](https://github.com/damienbod/Angular2WebpackVisualStudio/tree/master/docs/HMR.md)
-
-- [Building production ready Angular apps with Visual Studio and ASP.NET Core](https://damienbod.com/2017/01/01/building-production-ready-angular-apps-with-visual-studio-and-asp-net-core/)
-
+* Produktivumgebung Hardware (Noch nicht online)
+  * Synology Diskstation (Dockerfähiger Webserver mit RAID 2)
+  
 ## License
 
 MIT
@@ -221,7 +119,6 @@ mongoimport --db kinderkultur --collection links --drop --file ~/Documents/impor
 mongoimport -h 127.0.0.1:1111 --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
 -h <hostname><:port>
 
-
 #### credits
 
 use admin
@@ -238,3 +135,12 @@ mongo admin -u admin -p
 
 Feeds used:
     https://api.nuget.org/v3/index.json
+
+#### MongoDB C# Driver
+
+https://github.com/fpetru/WebApiMongoDB
+http://www.qappdesign.com/using-mongodb-with-net-core-webapi/
+
+### .NET Core Web API Versioning
+
+https://www.hanselman.com/blog/ASPNETCoreRESTfulWebAPIVersioningMadeEasy.aspx
