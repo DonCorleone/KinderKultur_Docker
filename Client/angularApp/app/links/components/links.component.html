@@ -1,14 +1,17 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-4 col-sm-6 col-xs-12 my-2" *ngFor="let link of links; index as linkIndex;">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">{{link.title}}</h4>
-          <div class="card-text" [innerHTML] = "link.desc"></div>
-          <img class="card-img-bottom" src="assets/links_{{link.name}}.png" [alt]="link.name">
-        </div>
-        <div class="card-footer">
-          <a href="{{link.url}}" target="_blank">{{link.urldesc}}</a>
+
+    <div class="card-columns">
+      <div class="xy" *ngFor="let link of links; index as linkIndex;">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{link.title}}</h4>
+            <div class="card-text" [innerHTML]="link.desc"></div>
+            <img class="card-img-bottom" src="assets/links_{{link.name}}.png" [alt]="link.name">
+          </div>
+          <div class="card-footer">
+            <a href="{{link.url}}" target="_blank">{{link.urldesc}}</a>
+          </div>
         </div>
       </div>
     </div>

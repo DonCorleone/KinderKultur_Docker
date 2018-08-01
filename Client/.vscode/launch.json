@@ -3,23 +3,19 @@
 	// Use hover for the description of the existing attributes
 	// For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
 	"version": "0.2.0",
+	"compounds": [{
+		"name": "[Development] Debug Client",
+		"configurations": ["Launch Angular Webpack", "Launch Chrome against localhost"]
+	}],
 	"configurations": [{
-			"type": "firefox",
-			"request": "launch",
-			"name": "Launch Firefox against localhost",
-			"url": "https://localhost:8080",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
 			"type": "chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
 			"url": "https://localhost:8080",
 			"webRoot": "${workspaceFolder}",
 		},
-
 		{
-			"name": "Launch All In",
+			"name": "Launch Angular Webpack",
 			"type": "node",
 			"request": "launch",
 			"program": "${workspaceRoot}/node_modules/.bin/webpack-dev-server",
@@ -33,17 +29,9 @@
 			},
 			"console": "integratedTerminal",
 			"sourceMaps": true,
-			"port": 8080
-
+			"port": 8080,
+			"timeout": 60000
 		},
-		{
-			"type": "chrome",
-			"request": "launch",
-			"name": "Launch Chrome against localhost 4200",
-			"url": "http://localhost:4200",
-			"webRoot": "${workspaceFolder}"
-		}
-
 
 	]
 }
