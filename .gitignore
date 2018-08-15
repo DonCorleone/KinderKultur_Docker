@@ -334,3 +334,4 @@ localhost*.*
 Server/internal_logs/internallog.txt
 Server/mongod.cfg
 Server/mongodAnonymous.cfg
+.env
