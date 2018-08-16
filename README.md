@@ -109,15 +109,18 @@ MIT
 
 ### MongoDB
 
-#### Start
+#### Start locally
 
     cd /usr/local/bin
     mongod --config mongod.cfg
-    
-    /Users/dev/Documents/imports/links.json
-mongoimport --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
-mongoimport -h 127.0.0.1:1111 --db kinderkultur --collection links --drop --file ~/Documents/imports/links.json
--h <hostname><:port>
+
+#### Start Docker Image
+
+    docker start mongodbKinderkultur
+
+#### Import
+
+    mongoimport -h 127.0.0.1:27017 --authenticationDatabase=admin -u 'username' -p 'password' --db kinderkultur --collection links --drop --file links.json
 
 #### credits
 

@@ -1,29 +1,36 @@
 version: '3'
 
 services:
-  webapiapplication:
-    container_name: webapiapplication
-    image: dotnetserver
-    build:
-      context: ./server
-      dockerfile: .docker/Dockerfile
-    ports:
-      - "5001:80"
-    networks:
-      - webapi-network
+#  webapiapplication:
+#    container_name: webapiapplication
+#    image: dotnetserver
+#    build:
+#      context: ./server
+#      dockerfile: .docker/Dockerfile
+#    environment:
+#      - ASPNETCORE_ENVIRONMENT=Development
+#      # The name of the variable below does not reflect the actual name
+#      # - ASPNETCORE_URLS=https://*:443;http://*:80
+#      - ASPNETCORE_HTTPS_PORT=5001
+#    ports:
+#      # Both of these ports have been taken from launchSettings.json in the application.
+#      - "5000:80"
+#      - "5001:443"
+#    networks:
+#      - webapi-network
 
-  node:
-    container_name: nodeapp
-    image: angularfrontend
-    build:
-      context: ./client
-      dockerfile: .docker/Dockerfile
-    environment:
-      - NODE_ENV=development
-    ports:
-      - "8080:80"
-    networks:
-      - webapi-network
+  # node:
+  #  container_name: nodeapp
+  #  image: angularfrontend
+  #  build:
+  #    context: ./client
+  #    dockerfile: .docker/Dockerfile
+  #  environment:
+  #    - NODE_ENV=development
+  #  ports:
+  #    - "8080:80"
+  #  networks:
+  #    - webapi-network
 
   mongodb:
     container_name: mongodbKinderkultur
@@ -37,7 +44,14 @@ services:
       - webapi-network
     ports:
       - "27017:27017"
-
+  maria:
+    image: mariadb
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
+    networks:
+      - webapi-network
 networks:
   webapi-network:
     driver: bridge
