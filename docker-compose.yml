@@ -45,6 +45,7 @@ services:
     ports:
       - "27017:27017"
   maria:
+    container_name: mariadbKinderkultur
     image: mariadb
     restart: always
     env_file: .env
@@ -52,6 +53,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
     networks:
       - webapi-network
+    ports:
+      - "3306:3306"
 networks:
   webapi-network:
     driver: bridge
