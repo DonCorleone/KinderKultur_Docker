@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './components/home.component';
 import { HomeRoutes } from './home.routes';
+import { ImageService } from '../core/services/image.service';
 
 @NgModule({
 	imports: [
@@ -20,6 +21,9 @@ import { HomeRoutes } from './home.routes';
 
 	exports: [
 		HomeComponent
+	],
+	providers: [
+		ImageService
 	]
 })
 

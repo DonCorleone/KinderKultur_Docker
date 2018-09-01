@@ -1,23 +1,21 @@
 ﻿<div class="container-fluid">
 
-<br/>
-<h1>File Upload Using Angular 5 and ASP.NET Core 2.1</h1>
-<input #file type="file" multiple (change)="upload(file.files)" />
-<br/>
-<span style="font-weight:bold;color:brown;" *ngIf="progress > 0 && progress < 100">
-  {{progress}}%
-</span>
+  <br />
+  <h1>File Upload Using Angular 6 and ASP.NET Core 2.1</h1>
+  <input #file type="file" multiple (change)="upload(file.files)" />
+  <br />
+  <span style="font-weight:bold;color:brown;" *ngIf="imageService.progress > 0 && imageService.progress < 100">
+    {{imageService.progress}}%
+  </span>
 
-<span style="font-weight:bold;color:chocolate;" *ngIf="message">
-  {{message}}
-</span>
+  <span style="font-weight:bold;color:chocolate;" *ngIf="imageService.message">
+    {{imageService.message}}
+  </span>
 </div>
-<img [src]="imageToShow"
-     alt="Place image title"
-     *ngIf="!isImageLoading; else noImageFound">
+<img [src]="imageService.imageToShow" alt="Place image title" *ngIf="!isImageLoading; else noImageFound">
 <ng-template #noImageFound>
-     <img src="fallbackImage.png" alt="Fallbackimage">
+  <img src="fallbackImage.png" alt="Fallbackimage">
 </ng-template>
 <!-- <main role="main"> -->
 
- <!-- </main> -->
+<!-- </main> -->
