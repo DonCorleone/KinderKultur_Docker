@@ -12,28 +12,45 @@
 						<div class="card-body">
 							<div class="form-group">
 								<label for="exampleInputLinkName">Name</label>
-								<input type="text" class="form-control" id="exampleInputLinkName" placeholder="Name of the Link ..." name="linkName" [(ngModel)]="link.name"
-								   required>
+								<input type="text" class="form-control" id="exampleInputLinkName" placeholder="Name of the Link ..." name="linkName"
+								   [(ngModel)]="link.name" required>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputLinkTitle">Title</label>
-								<input type="text" class="form-control" id="exampleInputLinkTitle" placeholder="Title of the Link ..." name="linkTitle" [(ngModel)]="link.title"
-								   required>
+								<input type="text" class="form-control" id="exampleInputLinkTitle" placeholder="Title of the Link ..." name="linkTitle"
+								   [(ngModel)]="link.title" required>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputLinkDesc">Desc</label>
-								<textarea class="form-control" id="exampleInputLinkDesc" rows="3" placeholder="Desc of the Link ..." name="linkDesc" [(ngModel)]="link.desc"
-								   required></textarea>
+								<textarea class="form-control" id="exampleInputLinkDesc" rows="3" placeholder="Desc of the Link ..." name="linkDesc"
+								   [(ngModel)]="link.desc" required></textarea>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputLinkUrl">URL</label>
-								<input type="url" class="form-control" id="exampleInputLinkUrl" placeholder="URL of the Link ..." name="linkUrl" [(ngModel)]="link.url"
-								   required>
+								<input type="url" class="form-control" id="exampleInputLinkUrl" placeholder="URL of the Link ..." name="linkUrl"
+								   [(ngModel)]="link.url" required>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputLinkUrlDesc">URLDesc</label>
 								<input type="text" class="form-control" id="exampleInputLinkUrlDesc" placeholder="Desc of the URL ..." name="linkUrlDesc"
 								   [(ngModel)]="link.urldesc" required>
+							</div>
+							<div class="form-group">
+								<div>
+									<input #file type="file" multiple (change)="upload(file.files)" />
+									<br />
+									<span style="font-weight:bold;color:brown;" *ngIf="imageService.progress > 0 && imageService.progress < 100">
+										{{imageService.progress}}%
+									</span>
+
+									<span style="font-weight:bold;color:chocolate;" *ngIf="imageService.message">
+										{{imageService.message}}
+									</span>
+								</div>
+								<img [src]="imageService.imageToShow" alt="Place image title" *ngIf="!isImageLoading; else noImageFound">
+								<ng-template #noImageFound>
+									<img src="fallbackImage.png" alt="Fallbackimage">
+								</ng-template>
 							</div>
 						</div>
 					</div>

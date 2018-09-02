@@ -27,7 +27,7 @@ export class ImageService {
 		this._staticUrl = configuration.getStaticURI() + '/images/';
 	}
 
-	public upload(files: File[]) {
+	public upload(files: File[], id: string) {
 		if (files.length === 0) {
 			return;
 		}
@@ -38,8 +38,10 @@ export class ImageService {
 			formData.append('file', file);
 		}
 
+		formData.append('id', id);
+
 		const uploadRequest = new HttpRequest('POST', this._actionUrl, formData, {
-			reportProgress: true
+			reportProgress: true,
 		});
 
 		this.httpClient

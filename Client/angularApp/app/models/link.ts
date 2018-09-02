@@ -5,4 +5,5 @@ export class Link {
 	public desc: string;
 	public url: string;
 	public urldesc: string;
+	public imagename: string;
 }

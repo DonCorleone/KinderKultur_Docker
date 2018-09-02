@@ -12,6 +12,7 @@ import { LinksEditableAddComponent } from './components/linksEditable-add.compon
 import { AuthGuard } from '../auth.guard';
 import { LinkService } from '../core/services/link-data.service';
 import { LinksRoutes } from './links.routes';
+import { ImageService } from '../core/services/image.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { LinksRoutes } from './links.routes';
 		LinksEditableAddComponent
 	],
 	exports:      [ ],
-	providers: [AuthGuard, LinkService]
+	providers: [AuthGuard, LinkService, ImageService]
 })
 
 export class LinksModule { }

@@ -14,5 +14,9 @@
         },
         "**/*.ngfactory.js": true,
         "**/*.ngstyle.js": true
-    }
+    },
+    "cSpell.words": [
+        "imagename",
+        "urldesc"
+    ]
 }

@@ -9,6 +9,6 @@ export class HomeComponent {
 	constructor(public imageService: ImageService) {}
 
 	upload(files: File[]): void {
-		this.imageService.upload(files);
+		this.imageService.upload(files, 'xxx');
 	}
 }
