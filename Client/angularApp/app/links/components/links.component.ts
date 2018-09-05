@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
+import { ConfigService } from '../../shared/utils/config.service';
 
 @Component({
 	selector: 'app-links-list',
@@ -12,9 +13,14 @@ export class LinksComponent implements OnInit {
 
 	public message: string;
 	public links: Link[] = [];
+	staticImagesUri: string;
 
-	constructor(private dataService: LinkService) {
+	constructor(
+		private dataService: LinkService,
+		private configService: ConfigService
+	) {
 		this.message = 'Links from the ASP.NET Core API';
+		this.staticImagesUri = configService.getStaticURI() + '/images/';
 	}
 
 	ngOnInit() {

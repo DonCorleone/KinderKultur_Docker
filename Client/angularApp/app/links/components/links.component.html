@@ -7,7 +7,10 @@
           <div class="card-body">
             <h4 class="card-title">{{link.title}}</h4>
             <div class="card-text" [innerHTML]="link.desc"></div>
-            <img class="card-img-bottom" src="assets/links_{{link.name}}.png" [alt]="link.name">
+            <img class="card-img-bottom" [src]="staticImagesUri + link.imagename" [alt]="link.name" *ngIf="!isImageLoading; else noImageFound">
+            <ng-template #noImageFound>
+              <img src="fallbackImage.png" alt="Fallbackimage">
+            </ng-template>
           </div>
           <div class="card-footer">
             <a href="{{link.url}}" target="_blank">{{link.urldesc}}</a>

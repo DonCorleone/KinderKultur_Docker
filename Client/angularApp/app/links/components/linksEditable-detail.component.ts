@@ -5,6 +5,7 @@ import { Location }                 from '@angular/common';
 import { LinkService } from './../../core/services/link-data.service';
 import { Link } from './../../models/link';
 import { ImageService } from '../../core/services/image.service';
+import { ConfigService } from '../../shared/utils/config.service';
 
 
 
@@ -17,13 +18,17 @@ export class LinksEditableDetailComponent implements OnInit {
 
 	link: Link;
 	errors: string;
+	staticImageUri: string;
 
 	constructor(
 		private linkService: LinkService,
 		private route: ActivatedRoute,
 		private location: Location,
+		private configService: ConfigService,
 		public imageService: ImageService
-	) { }
+	) {
+		this.staticImageUri = configService.getStaticURI() + '/images/';
+	}
 
 	ngOnInit(): void {
 		this.errors = '';
@@ -48,6 +53,6 @@ export class LinksEditableDetailComponent implements OnInit {
 	}
 
 	upload(files: File[]): void {
-		this.imageService.upload(files, this.link.id);
+		this.imageService.upload(files, this.link);
 	}
 }

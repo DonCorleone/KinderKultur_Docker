@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { ConfigService } from '../../shared/utils/config.service';
 import { of } from 'rxjs/internal/observable/of';
+import { Link } from '../../models/link';
 
 @Injectable()
 export class ImageService {
@@ -27,7 +28,7 @@ export class ImageService {
 		this._staticUrl = configuration.getStaticURI() + '/images/';
 	}
 
-	public upload(files: File[], id: string) {
+	public upload(files: File[], link: Link) {
 		if (files.length === 0) {
 			return;
 		}
@@ -38,7 +39,7 @@ export class ImageService {
 			formData.append('file', file);
 		}
 
-		formData.append('id', id);
+		// formData.append('id', id);
 
 		const uploadRequest = new HttpRequest('POST', this._actionUrl, formData, {
 			reportProgress: true,
@@ -51,6 +52,7 @@ export class ImageService {
 					this.progress = Math.round((100 * event.loaded) / event.total);
 				} else if (event.type === HttpEventType.Response) {
 					this.message = event.body.toString();
+					link.imagename = event.body.toString();
 					this.getImageFromService(event.body.toString());
 				}
 			});
