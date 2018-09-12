@@ -336,3 +336,4 @@ Server/mongod.cfg
 Server/mongodAnonymous.cfg
 .env
 Server/wwwroot/images/
+Client/server.pem
