@@ -337,3 +337,8 @@ Server/mongodAnonymous.cfg
 .env
 Server/wwwroot/images/
 Client/server.pem
+Server/dockerContainer/backup-mongodb-before-mojave-db.tar
+Server/dockerContainer/backup-mariadb-before-mojave.tar
+Server/dockerContainer/backup-mariadb-before-mojave_data.tar
+Server/dockerContainer/backup-mongodb-before-mojave.tar
+Server/dockerContainer/backup-mongodb-before-mojave-configdb.tar
