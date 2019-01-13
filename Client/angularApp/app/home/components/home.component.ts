@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 		this._hubConnection.start().catch(err => console.error(err.toString()));
 
 		this._hubConnection.on('Send', (data: any) => {
-			const received = `Received: ${data}`;
+			const received = `${data}`;
 			this.messages.push(received);
 		});
 	}
