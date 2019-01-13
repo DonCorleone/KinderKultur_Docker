@@ -12,6 +12,7 @@
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
 			"url": "https://localhost:8080",
+			"runtimeArgs": ["--allow-insecure-localhost"],
 			"webRoot": "${workspaceFolder}",
 		},
 		{
