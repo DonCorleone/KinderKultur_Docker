@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid" id="linksList">
   <div class="row">
 
     <div class="card-columns">
-      <div class="xy" *ngFor="let link of links; index as linkIndex;">
+      <div class="ngLoop" *ngFor="let link of links; index as linkIndex;">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">{{link.title}}</h4>
