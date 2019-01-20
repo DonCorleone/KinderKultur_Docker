@@ -1,7 +1,33 @@
 version: '3'
 
 services:
-#  webapiapplication:
+  mongodb:
+    container_name: mongodbKinderkultur
+    image: mongo
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    networks:
+      - webapi-network
+    ports:
+      - "27017:27017"
+  maria:
+    container_name: mariadbKinderkultur
+    image: mariadb
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
+    networks:
+      - webapi-network
+    ports:
+      - "3306:3306"
+networks:
+  webapi-network:
+    driver: bridge
+    #  webapiapplication:
 #    container_name: webapiapplication
 #    image: dotnetserver
 #    build:
@@ -31,30 +57,3 @@ services:
   #    - "8080:80"
   #  networks:
   #    - webapi-network
-
-  mongodb:
-    container_name: mongodbKinderkultur
-    image: mongo
-    env_file: .env
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-    networks:
-      - webapi-network
-    ports:
-      - "27017:27017"
-  maria:
-    container_name: mariadbKinderkultur
-    image: mariadb
-    restart: always
-    env_file: .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
-    networks:
-      - webapi-network
-    ports:
-      - "3306:3306"
-networks:
-  webapi-network:
-    driver: bridge

@@ -32,17 +32,17 @@
   * [AutoMapper](http://automapper.readthedocs.io) via Dependency Injection
 
 * Database: SQL & NoSQL
-  * Content:  [MongoDB](https://www.mongodb.com) Entwicklung auf lokalem Server
+  * Content:  [MongoDB](https://www.mongodb.com), auf [Docker](https://www.docker.com)-Container
   * Authentication: [MariaDB](https://mariadb.org/) (MySQL-Derrivat), auf [Docker](https://www.docker.com)-Container
 
 * Versionsverwaltung
-    * [Git](https://git-scm.com) auf [GitHub- Repository](https://github.com/DonCorleone/KinderKultur_Docker)
+* [Git](https://git-scm.com) auf [GitHub- Repository](https://github.com/DonCorleone/KinderKultur_Docker)
 
 * Enwicklungsumgebung Hardware
   * Apple MacBook Pro
 
 * Entwicklungsumgebung Software:
-  * MacOS 10.13 (High Sierra)
+  * MacOS 10.14 (Mojave)
   * Visual Studio Code (TypeScript, HTML, SCSS, C#, MongoShell)
   * Postman (API-Testing)
   * Robo 3T (Mongo-DB)
