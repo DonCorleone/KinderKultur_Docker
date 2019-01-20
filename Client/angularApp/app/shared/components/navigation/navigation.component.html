@@ -1,28 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" [routerLink]="['/home']"><em>Kinderkultur 2.0</em></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbar">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul *ngIf="status" class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <li><a class="nav-link" [routerLink]="['/home']">Home</a></li>
-                <li><a class="nav-link" [routerLink]="['/links']">Links</a></li>
-                <li><a class="nav-link" [routerLink]="['/links/editable']">Edit Links</a></li>
-                <li><a class="nav-link" (click)="logout()" href="#">Logoff</a>
+                <a class="nav-link" [routerLink]="['/home']">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/links']">Links</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/links/editable']">Edit Links</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()" href="#">Logoff</a>
+            </li>
         </ul>
         <ul *ngIf="!status" class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <li><a class="nav-link" [routerLink]="['/home']">Home</a></li>
-                <li><a class="nav-link" [routerLink]="['/links']">Links</a></li>
-                <li><a class="nav-link" [routerLink]="['/register']">Register</a></li>
-                <li><a class="nav-link" [routerLink]="['/login']">Login by eMail</a></li>
-                <li><a class="nav-link" [routerLink]="['/facebook-login']">Login by Facebook ID</a></li>
+                <a class="nav-link" [routerLink]="['/home']">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/links']">Links</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/register']">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/login']">Login by eMail</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/facebook-login']">Login by Facebook ID</a>
+            </li>
         </ul>
-        <span class="navbar-text">
-
-        </span>
     </div>
 </nav>
