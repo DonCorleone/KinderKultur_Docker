@@ -1,26 +1,55 @@
 /* Sticky footer styles
 -------------------------------------------------- */
+
 html {
     position: relative;
     min-height: 100%;
-  }
-  body {
+}
+
+body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-  }
+}
 
-  body > .container {
+body>.container {
     padding: 60px 15px 0;
-  }
-  
-  .footer > .container {
+}
+
+.footer>.container {
     padding-right: 15px;
     padding-left: 15px;
-  }
+}
+
 .navigationLinkButton:hover {
     cursor: pointer;
 }
 
 a {
     color: #03A9F4;
+}
+
+/* Buttons
+----------------------------------------------------*/
+// Your variable overrides
+@import "../styles/variables.scss";
+
+.btn-primary{
+  background-color: $colorDimgray;
+  border-color: $colorThistle;
+  color: $colorThistle;
+}
+.btn-primary:hover {
+  background-color: $colorThistle;
+  border-color: $colorDimgray;
+  color: colorDimgray;
+}
+.btn-danger{
+  background-color: $colorBrown;
+  border-color: $colorPachpuff;
+  color: $colorPachpuff;
+}
+.btn-danger:hover {
+  background-color: $colorPachpuff;
+  border-color: $colorBrown;
+  color: $colorBrown;
 }

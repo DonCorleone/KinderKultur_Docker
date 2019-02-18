@@ -7,8 +7,6 @@ import { Link } from './../../models/link';
 import { ImageService } from '../../core/services/image.service';
 import { ConfigService } from '../../shared/utils/config.service';
 
-
-
 @Component({
 	selector: 'app-links-editable-add',
 	templateUrl: './linksEditable-detail.component.html',
