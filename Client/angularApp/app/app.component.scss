@@ -31,7 +31,7 @@ a {
 /* Buttons
 ----------------------------------------------------*/
 // Your variable overrides
-@import "../styles/variables.scss";
+@import "../styles/variables";
 
 .btn-primary{
   background-color: $colorDimgray;
@@ -41,15 +41,15 @@ a {
 .btn-primary:hover {
   background-color: $colorThistle;
   border-color: $colorDimgray;
-  color: colorDimgray;
+  color: $colorDimgray;
 }
 .btn-danger{
   background-color: $colorBrown;
-  border-color: $colorPachpuff;
-  color: $colorPachpuff;
+  border-color: $colorPeachPuff;
+  color: $colorPeachPuff;
 }
 .btn-danger:hover {
-  background-color: $colorPachpuff;
+  background-color: $colorPeachPuff;
   border-color: $colorBrown;
   color: $colorBrown;
 }
