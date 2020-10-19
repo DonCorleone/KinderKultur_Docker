@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { XHRBackend } from '@angular/http';
-import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
@@ -32,10 +30,7 @@ import { ConfigService } from './shared/utils/config.service';
 	declarations: [
 		AppComponent
 	],
-	providers: [ConfigService, {
-		provide: XHRBackend,
-		useClass: AuthenticateXHRBackend
-	}],
+	providers: [ConfigService],
 	bootstrap: [AppComponent]
 })
 
