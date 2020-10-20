@@ -9,7 +9,7 @@ import { ModuleWithProviders } from '@angular/core';
 
 // const routes: Routes = ;
 
-export const LinksRoutes: ModuleWithProviders = RouterModule.forChild([
+export const LinksRoutes: ModuleWithProviders<RouterModule> = RouterModule.forChild([
 	{ path: '', component: LinksComponent },
 	{ path: 'editable', component: LinksEditableComponent, canActivate: [AuthGuard] },
 	{ path: 'detail/:id', component: LinksEditableDetailComponent, canActivate: [AuthGuard] },

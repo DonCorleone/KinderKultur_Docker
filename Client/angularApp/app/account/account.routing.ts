@@ -5,7 +5,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 
-export const AccountRouting: ModuleWithProviders = RouterModule.forChild([
+export const AccountRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
 	{ path: 'register', component: RegistrationFormComponent },
 	{ path: 'login', component: LoginFormComponent },
 	{ path: 'facebook-login', component: FacebookLoginComponent }
